@@ -1,0 +1,8 @@
+[2026-03-04 21:45:59] prueba
+----------
+[2026-03-04 21:49:25] Tal vez no decir marque cada vez solo una sola vez y decir solo los números.
+----------
+[2026-03-04 21:51:25] Voto por la opción A solo si velocidad de reproducción queda en 1.25, ya que con la velocidad normal el mensaje esta muy lento. Ademas, colocaria una solo opcion de "marque 1 para Ventas" en el menu principal, y despues que se desplieguen las opciones por linea de negocio. Tambien añadiria un mensaje que diga, marque  tal numero para repetir el menu principal
+----------
+[2026-03-05 03:25:44] Nada
+----------

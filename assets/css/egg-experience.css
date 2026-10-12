@@ -1,0 +1,558 @@
+/* ==========================================================================
+   APRACOM WEB — EXPERIENCIA INMERSIVA "NUESTROS OVOPRODUCTOS"
+   Estilos dedicados, encapsulados y responsive para el huevo en capas y steps
+   ========================================================================== */
+
+/* Variables locales específicas para ovoproductos */
+.section-ovoproductos {
+    position: relative;
+    padding: 70px 0 85px; /* Altura natural y equilibrada */
+    background-color: #fbfbfb;
+    overflow-x: clip; /* Previene desbordamiento horizontal sin cortar sticky */
+}
+
+/* Cabecera para móvil (oculta en desktop) */
+.ovoproductos-mobile-header {
+    display: none;
+}
+
+.ovoproductos-layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+}
+
+/* ==========================================================================
+   1. COLUMNA IZQUIERDA: HUEVO STICKY
+   ========================================================================== */
+.apracom-egg-visual {
+    flex: 0 0 44%;
+    max-width: 510px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 15vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: clamp(14px, 2.5vw, 36px); /* Aire controlado respecto al borde izquierdo */
+    z-index: 10;
+    perspective: 1200px;
+    perspective-origin: center center;
+    pointer-events: none; /* Dejar pasar eventos salvo hover local */
+}
+
+/* Badge de referencia permanente que acompaña al huevo sticky (Opción C) */
+.apracom-egg-ref-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold-apracom, #b59a4d);
+    margin-bottom: 28px;
+    opacity: 0.9;
+    user-select: none;
+}
+
+.apracom-egg-ref-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--gold-apracom, #b59a4d);
+    box-shadow: 0 0 8px rgba(181, 154, 77, 0.6);
+}
+
+/* Luz ambiental sutilísima detrás del huevo (sin círculo duro ni bordes perceptibles) */
+.apracom-egg-ambient {
+    position: absolute;
+    inset: -15%;
+    max-width: 100%;
+    background: radial-gradient(
+        ellipse 42% 38% at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(224, 185, 92, 0.08) 0%,
+        rgba(224, 185, 92, 0.03) 28%,
+        rgba(224, 185, 92, 0.008) 50%,
+        transparent 65%
+    );
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(35px);
+    transition: opacity 0.5s ease;
+}
+
+@media (max-width: 1023px) {
+    .apracom-egg-ambient {
+        inset: 0;
+    }
+}
+
+/* Escenario central que comparte el sistema de coordenadas 1448x1086 */
+.apracom-egg-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1448 / 1086;
+    max-width: clamp(350px, 30vw, 480px); /* Tamaño controlado: 480px máximo en desktop */
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    will-change: transform;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* Capas absolutas perfectamente registradas y centradas */
+.apracom-egg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    transform-origin: 50% 50%;
+    will-change: transform, opacity;
+}
+
+/* Estado inicial por defecto en CSS: capas explotadas invisibles, huevo cerrado visible */
+.layer-shell-top,
+.layer-fragments,
+.layer-white,
+.layer-yolk,
+.layer-shell-bottom,
+.layer-powder-fall {
+    opacity: 0;
+}
+
+/* Orden de apilamiento y profundidad 2.5D natural (según composición de referencia) */
+.layer-powder-mound {
+    z-index: 1;
+    transform: translateZ(-20px);
+    opacity: 0;
+}
+
+.layer-shell-bottom {
+    z-index: 2;
+    transform: translateZ(-5px);
+}
+
+.layer-powder-fall {
+    z-index: 3;
+    transform: translateZ(6px);
+    transform-origin: 50% 15%;
+}
+
+.layer-yolk {
+    z-index: 4;
+    transform: translateZ(18px);
+    transition: filter 0.4s ease;
+}
+
+.layer-white {
+    z-index: 5;
+    transform: translateZ(32px);
+    transition: filter 0.4s ease;
+}
+
+.layer-fragments {
+    z-index: 6;
+    transform: translateZ(46px);
+}
+
+.layer-shell-top {
+    z-index: 7;
+    transform: translateZ(60px);
+}
+
+.layer-egg-closed {
+    z-index: 10;
+    opacity: 1;
+    transform: translateZ(70px);
+    transform-origin: 50% 50%;
+}
+
+/* Resaltados específicos por paso */
+.highlight-white .layer-white {
+    filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.9)) drop-shadow(0 8px 24px rgba(212, 175, 55, 0.22)) brightness(1.05);
+}
+
+.highlight-yolk .layer-yolk {
+    filter: drop-shadow(0 6px 20px rgba(245, 166, 35, 0.45)) drop-shadow(0 12px 30px rgba(212, 175, 55, 0.3)) brightness(1.04);
+}
+
+/* ==========================================================================
+   PARTÍCULAS SUTILES DE POLVO EN CASCADA
+   ========================================================================== */
+.apracom-egg-particles {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 22%;
+    height: 38%;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.show-particles .apracom-egg-particles {
+    opacity: 0.85;
+}
+
+.egg-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f3d77d 0%, #d4aa38 75%, transparent 100%);
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.egg-particle.p1 { width: 4px; height: 4px; top: 12%; left: 35%; animation: particleFloat1 3.5s ease-in-out infinite; }
+.egg-particle.p2 { width: 3px; height: 3px; top: 28%; left: 62%; animation: particleFloat2 4.2s ease-in-out infinite 0.5s; }
+.egg-particle.p3 { width: 5px; height: 5px; top: 48%; left: 45%; animation: particleFloat1 3.8s ease-in-out infinite 1.0s; }
+.egg-particle.p4 { width: 3px; height: 3px; top: 62%; left: 25%; animation: particleFloat2 4.0s ease-in-out infinite 1.5s; }
+.egg-particle.p5 { width: 4px; height: 4px; top: 78%; left: 55%; animation: particleFloat1 4.5s ease-in-out infinite 0.8s; }
+.egg-particle.p6 { width: 3px; height: 3px; top: 38%; left: 20%; animation: particleFloat2 3.9s ease-in-out infinite 1.2s; }
+
+@keyframes particleFloat1 {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.45; }
+    50% { transform: translateY(5px) translateX(3px); opacity: 0.85; }
+}
+
+@keyframes particleFloat2 {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+    50% { transform: translateY(-4px) translateX(-3px); opacity: 0.88; }
+}
+
+/* ==========================================================================
+   2. COLUMNA DERECHA: TÍTULO Y TARJETAS PASO A PASO
+   ========================================================================== */
+.apracom-product-steps {
+    flex: 0 0 52%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+/* Cabecera de escritorio (estática, acompaña a la primera tarjeta sin colisiones) */
+.apracom-desktop-header {
+    margin-bottom: 35px;
+}
+
+.apracom-ovoproductos-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold-apracom, #b59a4d);
+    margin-bottom: 6px;
+}
+
+.apracom-ovoproductos-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--gold-apracom, #b59a4d);
+    box-shadow: 0 0 8px rgba(181, 154, 77, 0.6);
+}
+
+.apracom-ovoproductos-title {
+    color: var(--dark-brown, #3b3012);
+    font-size: 2.6rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.15;
+}
+
+/* Tarjeta individual como paso de scroll */
+.apracom-product-step {
+    background: #ffffff;
+    padding: 30px 34px;
+    border-radius: 16px;
+    position: relative;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-left: 5px solid transparent;
+    opacity: 0.52; /* Legible y nítido, pero claramente secundario */
+    transform: translateY(10px);
+    transition: opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-left-color 0.4s ease,
+                border-color 0.4s ease,
+                box-shadow 0.4s ease,
+                background-color 0.4s ease;
+    cursor: default;
+}
+
+.apracom-product-step:last-child {
+    margin-bottom: 0;
+}
+
+/* Estado activo elegante y corporativo */
+.apracom-product-step.is-active {
+    opacity: 1;
+    transform: translateY(0) scale(1.015);
+    z-index: 3;
+    border-left: 5px solid var(--gold-apracom, #b59a4d);
+    border-color: rgba(181, 154, 77, 0.35);
+    box-shadow: 0 16px 36px rgba(181, 154, 77, 0.16), 0 4px 14px rgba(0, 0, 0, 0.04);
+    background-color: #ffffff;
+}
+
+.apracom-product-step .num-highlight {
+    color: #b8a67c;
+    opacity: 0.65;
+    font-size: 2.3rem;
+    font-weight: 900;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: color 0.4s ease, opacity 0.4s ease, transform 0.4s ease, text-shadow 0.4s ease;
+}
+
+.apracom-product-step.is-active .num-highlight {
+    color: var(--gold-apracom, #b59a4d);
+    opacity: 1;
+    transform: scale(1.12);
+    text-shadow: 0 2px 10px rgba(181, 154, 77, 0.4);
+}
+
+.apracom-product-step h3 {
+    color: var(--dark-brown, #3b3012);
+    font-size: 1.28rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.apracom-product-step p {
+    color: #555;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ==========================================================================
+   3. RESPONSIVE COMPLETO
+   ========================================================================== */
+
+/* En escritorio y tablet cada tarjeta ocupa exactamente el centro del relato. */
+@media (min-width: 769px) {
+    .section-ovoproductos {
+        min-height: 190vh;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .ovoproductos-layout {
+        min-height: 190vh;
+        align-items: flex-start;
+    }
+
+    .apracom-product-steps {
+        position: sticky;
+        top: 0;
+        align-self: flex-start;
+        height: 100vh;
+        padding: 0;
+    }
+
+    .apracom-desktop-header {
+        position: absolute;
+        top: clamp(28px, 6vh, 64px);
+        left: 0;
+        right: 0;
+        margin: 0;
+    }
+
+    .apracom-product-step {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-50%) scale(0.96);
+    }
+
+    .apracom-product-step.is-active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(-50%) scale(1.015);
+    }
+}
+
+/* Tablets (768px a 1024px) */
+@media (max-width: 1024px) {
+    .ovoproductos-layout {
+        gap: 32px;
+        padding: 0 20px;
+    }
+    
+    .apracom-egg-visual {
+        flex: 0 0 44%;
+        max-width: 420px;
+        top: 13vh;
+        padding-left: 10px;
+    }
+
+    .apracom-egg-stage {
+        max-width: clamp(300px, 40vw, 390px);
+    }
+
+    .apracom-product-steps {
+        flex: 0 0 53%;
+    }
+
+    .apracom-ovoproductos-title {
+        font-size: 2.2rem;
+    }
+
+    .apracom-product-step {
+        padding: 24px 26px;
+        margin-bottom: 16vh;
+    }
+}
+
+/* Móviles y pantallas pequeñas (< 768px) */
+@media (max-width: 768px) {
+    .section-ovoproductos {
+        padding: 45px 0 65px;
+    }
+
+    .ovoproductos-mobile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 25px;
+        padding: 0 20px;
+    }
+
+    .ovoproductos-mobile-header .apracom-ovoproductos-badge {
+        justify-content: center;
+    }
+
+    .ovoproductos-mobile-header .apracom-ovoproductos-title {
+        font-size: 2.1rem;
+    }
+
+    .apracom-desktop-header {
+        display: none;
+    }
+
+    .apracom-egg-ref-badge {
+        display: none;
+    }
+
+    .ovoproductos-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0 18px;
+    }
+
+    .apracom-egg-visual {
+        position: relative; /* En móvil no es sticky para no tapar el texto de las tarjetas */
+        top: auto;
+        flex: none;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto 10px;
+        padding-left: 0;
+        z-index: 5;
+        perspective: none; /* Desactivar 3D en móvil para máximo rendimiento */
+    }
+
+    .apracom-egg-stage {
+        max-width: 270px;
+    }
+
+    .apracom-product-steps {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        padding-top: 5px;
+        padding-bottom: 10px;
+    }
+
+    .apracom-product-step {
+        position: relative;
+        top: auto;
+        margin-bottom: 18px;
+        padding: 20px 22px;
+        opacity: 0.90; /* En móvil las tarjetas se mantienen altamente legibles siempre */
+        transform: none;
+    }
+
+    .apracom-product-step:last-child {
+        margin-bottom: 0;
+    }
+
+    .apracom-product-step.is-active {
+        transform: scale(1.01);
+        opacity: 1;
+    }
+}
+
+/* El huevo y la tarjeta activa comparten el mismo centro vertical. */
+@media (min-width: 769px) {
+    .apracom-egg-visual {
+        top: 0;
+        align-self: flex-start;
+        height: 100vh;
+        height: 100svh;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   4. ACCESIBILIDAD: PREFERS REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .apracom-egg-stage {
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .apracom-egg-layer {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .apracom-product-step {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        margin-bottom: 20px !important;
+    }
+
+    .apracom-egg-ambient {
+        display: none !important;
+    }
+
+    .apracom-egg-particles {
+        display: none !important;
+    }
+
+    .layer-egg-closed {
+        display: none !important;
+    }
+}

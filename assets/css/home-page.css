@@ -1,0 +1,176 @@
+/* Inicio: composición de las capturas y contenido publicado de Apracom. */
+.home-page { font-family: Axiforma, Arial, sans-serif; color: #030a2b; }
+/* Header transparent base is in style.css; only overrides here */
+.home-page #main-header .nav-container { max-width: 1200px; padding: 0 32px; }
+.home-page #main-header .logo-white { display: block; width: 110px; height: auto; }
+.home-page #main-header .logo-color { display: none; }
+.home-page .main-nav ul { gap: 12px; }
+.home-page #main-header .nav-link { color: white; font-size: 13px; font-weight: 400; padding: 8px 8px; border-radius: 7px; }
+.home-page #main-header .nav-link.nav-link-soluciones,
+.home-page #main-header .nav-link[href$="#soluciones"],
+.home-page #main-header .nav-link[href*="#soluciones"] { background: #f7f7f7; color: #090909; padding: 8px 12px; font-weight: 500; }
+.home-page .nav-cta.btn-primary { font-size: 13px; padding: 7px 14px; margin-left: 0; }
+.home-page .hero-slider { height: clamp(524px,43.67vw,700px); min-height: 524px; background: #020928; }
+.home-page .hero-content-wrapper { max-width: 1200px; padding: 90px 60px 0; }
+.home-page .hero-text { width: 590px; max-width: 56%; padding-bottom: 7px; }
+.home-page .hero-text h1 { font-size: clamp(32px,3vw,36px) !important; line-height: 1.12 !important; letter-spacing: -.8px; font-weight: 700 !important; margin-bottom: 32px; }
+.home-page .hero-text h1 .hero-second-line { display: block; font: inherit; font-weight: 400; }
+.home-page .hero-text p { font-size: 12px !important; line-height: 1.4 !important; font-weight: 400; max-width: 375px !important; margin-bottom: 32px !important; color: white; opacity: 1; }
+.home-page .hero-text .btn-hero { width: auto; font-size: 12px; line-height: 1.5; padding: 5px 7px !important; border-radius: 5px !important; }
+.home-page .hero-primary-overlay { background: transparent !important; }
+.home-page .swiper-pagination { bottom: 15px; }
+.home-page .swiper-pagination-bullet { width: 6px; height: 6px; background: white; opacity: .6; margin: 0 2px !important; }
+.home-page .swiper-pagination-bullet-active { opacity: 1; }
+.home-tagline { background: #009aa6; color: white; text-align: center; padding: 13px 20px; font-size: 20px; line-height: 1.6; }
+.home-page .home-benefits { max-width: 1200px; padding: 42px 60px 44px; gap: 42px; flex-direction: row; align-items: center; }
+.home-page .benefits-intro { width: 280px; display: block; padding-right: 28px; }
+.home-page .benefits-intro h2 { font-size: 34px; line-height: 1.1; font-weight: 700; letter-spacing: -.9px; }
+.home-page .benefits-intro > p { font-size: 15px; line-height: 1.2; max-width: 245px; margin-top: 10px; }
+.home-page .brand-highlight::before { inset: 1px -12px -1px -5px; }
+.home-page .benefits-next { top: 85px; right: 0; width: 25px; height: 25px; font-size: 25px; line-height: 1; }
+.home-page .expanding-gallery { height: 338px; gap: 26px; }
+.home-page .gallery-panel { border-radius: 8px; }
+.home-page .gallery-icon { width: 20px; height: 20px; top: 15px; left: 13px; }
+.home-page .gallery-icon img { width: 13px; height: 13px; }
+.home-page .gallery-plus { display: none; }
+.home-page .gallery-panel .gallery-copy { padding: 14px; min-height: 150px; }
+.home-page .gallery-panel .gallery-copy h3 { font-size: 15px; line-height: 1.2; min-height: 36px; margin-bottom: 12px; overflow-wrap: normal; }
+.home-page .gallery-panel .gallery-copy p { font-size: 10px; line-height: 1.3; height: auto; max-width: none; }
+.home-page .gallery-panel .gallery-details { visibility: visible; opacity: 1; max-height: none; }
+.home-page .gallery-panel:not(.is-expanded) .gallery-link { display: none; }
+.home-page .gallery-panel.is-expanded .gallery-copy { padding: 16px; }
+.home-page .gallery-link { margin-top: 10px; padding-top: 8px; font-size: 10px; }
+.home-page .home-catalogs { max-width: 1200px; padding: 12px 60px 60px; gap: 70px; min-height: 350px; }
+.home-page .home-catalog-image img { width: 390px; }
+.home-page .home-catalog-copy h2 { font-size: 32px; margin-bottom: 18px; }
+.home-page .home-catalog-copy p { font-size: 15px; line-height: 1.3; }
+.home-page .home-catalog-copy .brand-button { font-size: 13px; padding: 7px 14px; }
+.home-page .impact-section { min-height: 336px; padding: 75px 0; background-image: url('../img/empleados.webp'); }
+.home-page .impact-overlay { background: rgba(0,95,106,.76); }
+.home-page .impact-inner { max-width: 1200px; padding: 0 60px; }
+.home-page .impact-grid { display: grid; grid-template-columns: 1.25fr 2.75fr; gap: 40px; }
+.home-page .impact-main-title h2 { font-size: 32px; line-height: 1.2; font-weight: 700; letter-spacing: -.7px; margin: 0; text-align: left; }
+.home-page .impact-stats { display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; gap: 15px; }
+.home-page .stat-item { min-width: 0; }
+.home-page .stat-number { font-size: 48px; font-weight: 700; line-height: 1.1; white-space: nowrap; letter-spacing: -1px; }
+.home-page .stat-label { font-size: 16px; line-height: 1.5; margin-top: 0; opacity: 1; }
+.home-page .stat-divider { display: block; height: 80px; }
+.home-page .apracom-footer { background: #00283b; font-family: Axiforma, Arial, sans-serif; }
+.home-page .apracom-footer::before { display: none; }
+.home-page .apracom-footer-hex-bg { opacity: 1; }
+.home-page .apracom-footer-inner { max-width: 1200px; padding: 55px 50px 12px; }
+.home-page .apracom-footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 48px; text-align: left; }
+.home-page .apracom-footer-brand { grid-column: auto; }
+.home-page .apracom-footer-logo { width: 200px; margin: 0 0 30px; }
+.home-page .apracom-footer-tagline { font-size: 15px; line-height: 1.4; margin-bottom: 16px; }
+.home-page .apracom-footer-social { gap: 10px; margin-bottom: 35px; justify-content: flex-start; }
+.home-page .apracom-footer-social img { width: 23px; height: 23px; }
+.home-page .apracom-footer-cert-box img { display: block; width: 170px; height: auto; padding: 8px; border-radius: 10px; }
+.home-page .apracom-footer-col h3 { font-size: 13px; font-weight: 700; letter-spacing: 0; margin: 5px 0 30px; }
+.home-page .apracom-footer-col a { font-size: 13px; color: white; line-height: 1.5; }
+.home-page .apracom-footer-col li { margin-bottom: 13px; }
+.home-page .apracom-footer-contact-item { margin-bottom: 18px; }
+.home-page .apracom-footer-contact-item strong { font-size: 13px; line-height: 1.5; font-weight: 400; margin: 0; }
+.home-page .apracom-footer-contact-item:first-of-type strong { font-weight: 700; }
+.home-page .apracom-footer-address { color: white; font-size: 11px; line-height: 1.5; margin-top: 30px; border: 0; padding: 0; }
+.home-page .apracom-footer-bottom { background: #42aab3; color: white; font-size: 11px; font-weight: 400; padding: 12px 20px; }
+/* Recupera el tamaño amplio anterior de Beneficios y Catálogos. */
+@media (min-width: 801px) {
+  .home-page .home-benefits { max-width: 1680px; padding: 64px clamp(32px,4vw,76px) 44px; gap: clamp(28px,3vw,56px); }
+  .home-page .benefits-intro { width: clamp(250px,20vw,330px); padding-right: 22px; }
+  .home-page .benefits-intro h2 { font-size: clamp(32px,2.5vw,43px); line-height: 1.16; }
+  .home-page .benefits-intro > p { font-size: clamp(14px,1.05vw,18px); line-height: 1.5; max-width: 300px; margin-top: 18px; }
+  .home-page .benefits-next { top: 104px; right: -5px; width: 30px; height: 30px; }
+  .home-page .expanding-gallery { height: clamp(430px,31vw,530px); gap: 16px; }
+  .home-page .gallery-icon { width: 30px; height: 30px; top: 19px; left: 18px; }
+  .home-page .gallery-icon img { width: 17px; height: 17px; }
+  .home-page .gallery-panel .gallery-copy,
+  .home-page .gallery-panel.is-expanded .gallery-copy { padding: 22px; min-height: 195px; }
+  .home-page .gallery-panel .gallery-copy h3 { font-size: clamp(17px,1.3vw,22px); line-height: 1.25; min-height: 54px; margin-bottom: 18px; }
+  .home-page .gallery-panel .gallery-copy p { font-size: clamp(13px,.95vw,16px); line-height: 1.5; }
+  .home-page .gallery-link { font-size: 13px; margin-top: 16px; padding-top: 12px; }
+  .home-page .home-catalogs { max-width: 1600px; min-height: 385px; padding: 12px clamp(40px,5vw,90px) 60px; gap: clamp(36px,5vw,90px); }
+  .home-page .home-catalog-image img { width: clamp(390px,34vw,550px); }
+  .home-page .home-catalog-copy h2 { font-size: clamp(30px,2.6vw,43px); line-height: 1.25; max-width: 720px; margin-bottom: 22px; }
+  .home-page .home-catalog-copy p { font-size: clamp(15px,1.2vw,19px); line-height: 1.5; max-width: 720px; }
+  .home-page .home-catalog-copy .brand-button { font-size: 15px; padding: 10px 20px; margin-top: 28px; }
+}
+@media (max-width: 1000px) {
+  .home-page .home-benefits { padding-inline: 35px; gap: 30px; }
+  .home-page .benefits-intro { width: 235px; }
+  .home-page .benefits-intro h2 { font-size: 29px; }
+  .home-page .benefits-intro > p { font-size: 13px; }
+  .home-page .expanding-gallery { gap: 16px; }
+  .home-page .gallery-panel .gallery-copy { padding: 10px; }
+  .home-page .gallery-panel .gallery-copy h3 { font-size: 13px; }
+  .home-page .impact-inner { padding-inline: 35px; }
+  .home-page .impact-grid { gap: 25px; }
+  .home-page .impact-main-title h2 { font-size: 27px; }
+  .home-page .stat-number { font-size: 36px; }
+  .home-page .stat-label { font-size: 13px; }
+  .home-page .apracom-footer-inner { padding-inline: 35px; }
+  .home-page .apracom-footer-grid { gap: 25px; }
+  .home-page .apracom-footer-col a { font-size: 11px; overflow-wrap: anywhere; }
+}
+@media (max-width: 800px) {
+  .home-page .home-benefits { flex-direction: column; align-items: stretch; }
+  .home-page .benefits-intro { width: 100%; max-width: 420px; }
+  .home-page .expanding-gallery { height: 360px; }
+  .home-page .hero-content-wrapper { padding-inline: 30px !important; text-align: left; justify-content: flex-start !important; }
+  .home-page .hero-text { max-width: 60%; }
+  .home-page .hero-text h1 { font-size: 30px !important; }
+  .home-page .hero-text p { font-size: 12px !important; }
+  .home-page .home-catalogs { gap: 25px; padding-inline: 35px; }
+  .home-page .home-catalog-image img { width: 100%; }
+  .home-page .home-catalog-copy h2 { font-size: 26px; }
+  .home-page .impact-grid { grid-template-columns: 1fr; }
+  .home-page .impact-main-title h2 { text-align: center; }
+  .home-page .apracom-footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
+}
+@media (max-width: 560px) {
+  .home-page #main-header { height: 72px; }
+  .home-page .main-nav { top: 72px; background: #03122b; }
+  .home-page .hero-slider,.home-page .hero-slider .swiper-slide { height: 570px !important; min-height: 570px; }
+  .home-page .hero-primary-overlay { background: linear-gradient(90deg,#020928e8,#02092870) !important; }
+  .home-page .hero-content-wrapper { padding: 72px 27px 0 !important; }
+  .home-page .hero-text { max-width: 100%; }
+  .home-page .hero-text h1 { font-size: 31px !important; }
+  .home-page .hero-text p { max-width: 300px !important; }
+  .home-tagline { font-size: 15px; padding: 15px 10px; }
+  .home-page .home-benefits { padding: 42px 22px 28px; }
+  .home-page .expanding-gallery { height: auto; gap: 12px; }
+  .home-page .gallery-panel .gallery-copy { padding: 17px 18px 17px 53px; min-height: 0; }
+  .home-page .gallery-panel .gallery-copy h3 { font-size: 16px; min-height: 0; margin: 0; }
+  .home-page .gallery-panel:not(.is-expanded) .gallery-details { visibility: hidden; max-height: 0; opacity: 0; }
+  .home-page .gallery-panel.is-expanded .gallery-copy { padding: 22px; }
+  .home-page .gallery-panel.is-expanded .gallery-copy h3 { font-size: 24px; margin-bottom: 15px; }
+  .home-page .gallery-panel.is-expanded .gallery-copy p { font-size: 13px; line-height: 1.6; }
+  .home-page .gallery-icon { top: auto; bottom: 17px; left: 16px; width: 24px; height: 24px; }
+  .home-page .gallery-panel.is-expanded .gallery-icon { top: 18px; bottom: auto; }
+  .home-page .gallery-plus { display: block; }
+  .home-page .home-catalogs { padding: 10px 26px 45px; }
+  .home-page .home-catalog-image img { width: 290px; }
+  .home-page .home-catalog-copy p { font-size: 13px; }
+  .home-page .impact-section { padding: 45px 0; }
+  .home-page .impact-inner { padding-inline: 20px; }
+  .home-page .impact-stats { gap: 8px; }
+  .home-page .stat-number { font-size: 25px; }
+  .home-page .stat-label { font-size: 10px; }
+  .home-page .stat-divider { height: 45px; }
+  .home-page .apracom-footer-inner { padding: 40px 27px 20px; }
+  .home-page .apracom-footer-brand,.home-page .apracom-footer-contact { grid-column: 1 / -1; }
+  .home-page .apracom-footer-cert-box img { margin: 0; }
+  .home-page .apracom-footer-address { font-size: 9px; }
+}
+@media (min-width: 801px) and (max-width: 1280px) {
+  .home-page .home-benefits { flex-direction: column; align-items: stretch; gap: 28px; padding-top: 46px; }
+  .home-page .benefits-intro { width: 100%; display: flex; align-items: center; gap: 40px; padding-right: 50px; }
+  .home-page .benefits-intro h2 { flex-shrink: 0; font-size: 32px; }
+  .home-page .benefits-intro > p { max-width: 400px; margin-top: 0; font-size: 15px; }
+  .home-page .benefits-next { right: 0; top: 50px; }
+  .home-page .expanding-gallery { height: 430px; }
+  .home-page .gallery-panel .gallery-copy { padding: 18px; }
+  .home-page .gallery-panel .gallery-copy h3 { font-size: 18px; }
+  .home-page .home-catalogs { gap: 32px; padding-inline: 40px; }
+  .home-page .home-catalog-image img { width: 100%; }
+}

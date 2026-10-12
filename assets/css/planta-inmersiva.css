@@ -1,0 +1,725 @@
+/* ==========================================================================
+   APRACOM WEB — PLANTA DE PRODUCCIÓN INMERSIVA
+   Estilos dedicados, encapsulados y responsive para la sección de producción
+   ========================================================================== */
+
+:root {
+  --prod-gold: #b59a4d;
+  --prod-gold-light: #d4af37;
+  --prod-gold-subtle: rgba(181, 154, 77, 0.12);
+  --prod-gold-glow: rgba(181, 154, 77, 0.35);
+  --prod-dark-brown: #3b3012;
+  --prod-text-dark: #222222;
+  --prod-text-muted: #555555;
+  --prod-bg-start: #fbf9f5;
+  --prod-bg-mid: #f5f2eb;
+  --prod-bg-end: #ece8df;
+  --prod-card-bg: rgba(255, 255, 255, 0.88);
+  --prod-border-subtle: rgba(181, 154, 77, 0.22);
+}
+
+/* --------------------------------------------------------------------------
+   1. SECCIÓN CONTENEDORA Y FONDO LIMPIO
+   -------------------------------------------------------------------------- */
+.section-planta.apracom-production-section {
+  position: relative;
+  --mouse-x: 35%;
+  --mouse-y: 50%;
+  background: linear-gradient(135deg, var(--prod-bg-start) 0%, var(--prod-bg-mid) 50%, var(--prod-bg-end) 100%);
+  padding: 90px 0 110px 0;
+  overflow-x: clip;
+  color: var(--prod-text-dark);
+  border-top: 1px solid rgba(181, 154, 77, 0.12);
+  isolation: isolate;
+}
+
+.section-planta.apracom-production-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 34rem at var(--mouse-x) var(--mouse-y),
+    rgba(212, 175, 55, 0.16),
+    rgba(212, 175, 55, 0.045) 42%,
+    transparent 72%
+  );
+  transition: background-position 0.2s ease-out;
+}
+
+/* En desktop con scroll storytelling, padding equilibrado sin espacios muertos */
+@media (min-width: 1024px) {
+  .section-planta.apracom-production-section {
+    min-height: clamp(680px, 82svh, 900px);
+    padding: 90px 0 105px 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Contenedor central a 2 columnas optimizado para Hero Visual */
+.apracom-production-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(1540px, 98vw);
+  margin: 0 auto;
+  padding: 0 clamp(18px, 2.2vw, 34px);
+  display: flex;
+  align-items: center; /* Centrado vertical armónico entre máquina y contenido */
+  justify-content: space-between;
+  gap: clamp(18px, 2vw, 32px);
+}
+
+/* --------------------------------------------------------------------------
+   2. COLUMNA IZQUIERDA: ESCENARIO DE LA MÁQUINA HERO (53%-55%) -- aún más grande
+   -------------------------------------------------------------------------- */
+.apracom-machine-column {
+  flex: 0 1 68%;
+  max-width: 72%;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .apracom-machine-column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineada hacia la izquierda como pieza protagonista */
+    justify-content: center;
+    z-index: 10;
+  }
+}
+
+/* Halo de profundidad detrás de la mezcladora. */
+.apracom-machine-ambient-light {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse 62% 52% at 50% 50%,
+    rgba(212, 175, 55, 0.22) 0%,
+    rgba(212, 175, 55, 0.09) 42%,
+    rgba(212, 175, 55, 0.02) 68%,
+    transparent 82%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(48px);
+  border-radius: 50%;
+  transition: opacity 0.5s ease;
+}
+
+@media (min-width: 1024px) {
+  .apracom-machine-ambient-light {
+    left: 44%;
+    width: 130%;
+    max-width: none;
+    height: 130%;
+    filter: blur(56px);
+  }
+}
+
+/* Contenedor 3D con perspectiva y tamaño HERO (clamp: 580px a 900px) -- muy aumentado */
+.apracom-machine-stage {
+  position: relative;
+  width: 110%;
+  max-width: 1440px;
+  margin: 0 0 0 clamp(-72px, -4vw, -28px);
+  transform: none;
+  perspective: 1500px;
+  perspective-origin: center center;
+  z-index: 2;
+}
+
+/* Wrapper que recibe la microanimación flotante y el parallax 2.5D */
+.apracom-machine-wrapper {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Canvas del equipo con proporción exacta (780 / 435) -- muy aumentado */
+.apracom-machine-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 680;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagen aislada y transparente de la máquina */
+.apracom-machine-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 26px 42px rgba(35, 30, 15, 0.18));
+  z-index: 3;
+}
+
+/* Sombra dinámica suave debajo de la máquina */
+.apracom-machine-shadow {
+  position: absolute;
+  bottom: 0%;
+  left: 8%;
+  width: 68%;
+  height: 32px;
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    rgba(40, 32, 16, 0.32) 0%,
+    rgba(40, 32, 16, 0.14) 48%,
+    transparent 75%
+  );
+  filter: blur(16px);
+  border-radius: 50%;
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* --------------------------------------------------------------------------
+   3. REFLEJO METÁLICO SOBRE ACERO INOXIDABLE (mask-image)
+   -------------------------------------------------------------------------- */
+.apracom-machine-shine {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  -webkit-mask-image: url('../produccion/mezcladora-industrial.png');
+  mask-image: url('../produccion/mezcladora-industrial.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(255, 255, 255, 0.14) 48%,
+    rgba(255, 255, 255, 0.26) 51%,
+    rgba(255, 255, 255, 0.14) 54%,
+    transparent 64%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  background-position: 180% 0;
+  mix-blend-mode: overlay;
+  opacity: 0.40;
+}
+
+/* Animación periódica del reflejo sutil (cada 7.5s) */
+@keyframes metallicShineSweep {
+  0% {
+    background-position: 180% 0;
+  }
+  30% {
+    background-position: -80% 0;
+  }
+  100% {
+    background-position: -80% 0;
+  }
+}
+
+.apracom-machine-shine.is-animated {
+  animation: metallicShineSweep 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* --------------------------------------------------------------------------
+   4. FLUJO TÉCNICO VECTORIAL (SVG OVERLAY)
+   -------------------------------------------------------------------------- */
+.apracom-machine-flow-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.apracom-flow-track {
+  stroke: rgba(181, 154, 77, 0.22);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.apracom-flow-active {
+  stroke: url(#apracomFlowGrad);
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: stroke-dashoffset 0.8s ease;
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6));
+}
+
+.apracom-flow-particle {
+  fill: #fff;
+  stroke: var(--prod-gold-light);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.9));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* --------------------------------------------------------------------------
+   5. HOTSPOTS INTERACTIVOS INDUSTRIALES
+   -------------------------------------------------------------------------- */
+.apracom-hotspot {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Posiciones porcentuales calibradas sobre el canvas 780x435 */
+.apracom-hotspot[data-hotspot="1"] {
+  left: 43.6%;
+  top: 43.7%;
+}
+
+.apracom-hotspot[data-hotspot="2"] {
+  left: 62.5%;
+  top: 28.8%;
+}
+
+.apracom-hotspot[data-hotspot="3"] {
+  left: 45.5%;
+  top: 65.5%;
+}
+
+/* Anillo exterior con pulso suave */
+.hotspot-ring {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--prod-gold);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: hotspotPulse 2.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes hotspotPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* Punto central dorado */
+.hotspot-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--prod-gold);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(181, 154, 77, 0.8), 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.apracom-hotspot:hover .hotspot-dot,
+.apracom-hotspot:focus-visible .hotspot-dot,
+.apracom-hotspot.is-active .hotspot-dot {
+  transform: scale(1.3);
+  background: var(--prod-gold-light);
+  box-shadow: 0 0 14px rgba(212, 175, 55, 1), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.apracom-hotspot:focus-visible {
+  outline: 2px dashed var(--prod-gold);
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+
+/* Tarjeta flotante / Tooltip base */
+.hotspot-card {
+  position: absolute;
+  width: 250px;
+  background: #ffffff;
+  border: 1px solid rgba(181, 154, 77, 0.3);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 12px 30px rgba(40, 30, 10, 0.15), 0 2px 8px rgba(0, 0, 0, 0.04);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s ease;
+  z-index: 25;
+  text-align: left;
+}
+
+/* Hotspot 1: Tambor principal (abre hacia arriba) */
+.apracom-hotspot[data-hotspot="1"] .hotspot-card {
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.apracom-hotspot[data-hotspot="1"] .hotspot-card::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+.apracom-hotspot[data-hotspot="1"]:hover .hotspot-card,
+.apracom-hotspot[data-hotspot="1"]:focus .hotspot-card,
+.apracom-hotspot[data-hotspot="1"].is-active .hotspot-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Hotspot 2: Panel de control (abre hacia la izquierda para evitar cortes con el header) */
+.apracom-hotspot[data-hotspot="2"] .hotspot-card {
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+}
+
+.apracom-hotspot[data-hotspot="2"] .hotspot-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #ffffff;
+}
+
+.apracom-hotspot[data-hotspot="2"]:hover .hotspot-card,
+.apracom-hotspot[data-hotspot="2"]:focus .hotspot-card,
+.apracom-hotspot[data-hotspot="2"].is-active .hotspot-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Hotspot 3: Salida inferior (abre hacia arriba) */
+.apracom-hotspot[data-hotspot="3"] .hotspot-card {
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.apracom-hotspot[data-hotspot="3"] .hotspot-card::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+.apracom-hotspot[data-hotspot="3"]:hover .hotspot-card,
+.apracom-hotspot[data-hotspot="3"]:focus .hotspot-card,
+.apracom-hotspot[data-hotspot="3"].is-active .hotspot-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hotspot-card-title {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: var(--prod-dark-brown);
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.hotspot-card-desc {
+  font-size: 0.84rem;
+  color: var(--prod-text-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. COLUMNA DERECHA: CONTENIDO Y ACCIONES (45%-47%) -- desplazado a la derecha
+   -------------------------------------------------------------------------- */
+.apracom-production-content {
+  flex: 1 1 40%;
+  min-width: 0;
+  max-width: 560px;
+  margin-left: auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* Badge de cabecera */
+.apracom-prod-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--prod-gold);
+  margin-bottom: 16px;
+}
+
+.apracom-prod-eyebrow .eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--prod-gold);
+  box-shadow: 0 0 8px rgba(181, 154, 77, 0.7);
+}
+
+/* Título de la sección */
+.apracom-production-title {
+  color: var(--prod-dark-brown);
+  font-size: clamp(2.3rem, 3.2vw, 3.1rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+/* Descripción general */
+.apracom-production-desc {
+  color: var(--prod-text-muted);
+  font-size: clamp(1.02rem, 1.15vw, 1.15rem);
+  line-height: 1.55;
+  margin-bottom: 32px;
+}
+
+/* Botón CTA "Hablar con un asesor" */
+.apracom-prod-cta {
+  background-color: var(--prod-gold);
+  color: #ffffff;
+  padding: 14px 34px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-block;
+  box-shadow: 0 6px 18px rgba(181, 154, 77, 0.28);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apracom-prod-cta:hover {
+  background-color: var(--prod-gold-light);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(181, 154, 77, 0.42);
+  color: #ffffff;
+}
+
+/* Badges de calidad y trazabilidad */
+.apracom-prod-badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.prod-badge-capsule {
+  border: 1.5px solid #e0dbce;
+  color: var(--prod-dark-brown);
+  padding: 9px 18px;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.prod-badge-capsule svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--prod-gold);
+}
+
+.prod-badge-capsule.is-highlighted {
+  border-color: var(--prod-gold);
+  background: #ffffff;
+  color: var(--prod-dark-brown);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(181, 154, 77, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE: TABLET (768px a 1023px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .section-planta.apracom-production-section {
+    padding: 70px 0 90px 0;
+    min-height: auto;
+  }
+
+  .apracom-production-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 0 24px;
+  }
+
+  .apracom-machine-column {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    top: 0;
+    align-items: center;
+  }
+
+  .apracom-machine-stage {
+    width: 100%;
+    max-width: clamp(480px, 75vw, 680px);
+    transform: none; /* Eliminar offset horizontal para centrado perfecto en tablet */
+    margin: 0 auto;
+  }
+
+  .apracom-production-content {
+    flex: 0 0 100%;
+    max-width: 680px;
+    margin-left: 0;
+    padding-top: 0;
+    text-align: center;
+  }
+
+  .apracom-prod-eyebrow {
+    justify-content: center;
+  }
+
+  .apracom-prod-badges {
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVE: MÓVIL (< 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .section-planta.apracom-production-section {
+    padding: 55px 0 75px 0;
+  }
+
+  .apracom-production-container {
+    padding: 0 18px;
+    gap: 28px;
+  }
+
+  .apracom-production-title {
+    font-size: 2.2rem;
+    margin-bottom: 14px;
+  }
+
+  .apracom-production-desc {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .apracom-machine-stage {
+    width: 100%;
+    max-width: clamp(290px, 92vw, 450px);
+    transform: none;
+    margin: 0 auto;
+  }
+
+  /* Hotspot cards en móvil adaptadas */
+  .hotspot-card {
+    width: 210px;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .apracom-prod-step {
+    padding: 14px 16px;
+    gap: 14px;
+  }
+
+  .prod-step-num {
+    font-size: 1.2rem;
+  }
+
+  .prod-step-body h3 {
+    font-size: 0.98rem;
+  }
+
+  .prod-step-body p {
+    font-size: 0.86rem;
+  }
+
+  .prod-badge-capsule {
+    padding: 7px 14px;
+    font-size: 0.82rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. ACCESIBILIDAD Y REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .apracom-machine-wrapper,
+  .apracom-machine-img,
+  .apracom-machine-shadow,
+  .apracom-prod-step,
+  .hotspot-ring {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .apracom-machine-shine {
+    display: none !important;
+  }
+
+  .hotspot-card {
+    transition: opacity 0.2s ease !important;
+  }
+}

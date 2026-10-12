@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBX Votación | APRACOM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan: #00f2fe;
+            --green: #4facfe;
+            --neon-green: #39ff14;
+            --bg: #0b0f19;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 254, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(57, 255, 20, 0.1) 0%, transparent 40%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            border-radius: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        .brand {
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            color: var(--cyan);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--cyan), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
+        }
+
+        .welcome-msg {
+            color: #a0aec0;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin: 1.5rem 0 2.5rem;
+        }
+
+        .welcome-msg b { color: var(--neon-green); }
+
+        .audio-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 25px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .audio-card:hover {
+            border-color: var(--cyan);
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.03);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .option-label { font-weight: 600; font-size: 1rem; color: #fff; }
+
+        audio { 
+            width: 100%; 
+            height: 35px;
+            /* Filtro para color azul claro/cian */
+            filter: invert(80%) sepia(50%) saturate(1000%) hue-rotate(150deg);
+        }
+
+        .btn-vote {
+            background: transparent;
+            color: var(--cyan);
+            border: 2px solid var(--cyan);
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        .btn-vote:hover {
+            background: var(--cyan);
+            color: var(--bg);
+            box-shadow: 0 0 20px var(--cyan);
+        }
+
+        .btn-vote:disabled {
+            border-color: #334155;
+            color: #334155;
+            cursor: not-allowed;
+        }
+
+        /* Resultados con estilo Neón */
+        .results-section {
+            margin-top: 2.5rem;
+            display: none;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .bar-container { margin-bottom: 1.5rem; text-align: left; }
+        .bar-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; }
+        
+        .bar-bg { background: #1a202c; height: 10px; border-radius: 20px; overflow: hidden; }
+        .bar-fill { 
+            height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+            background: linear-gradient(90deg, var(--green), var(--cyan));
+            box-shadow: 0 0 15px var(--cyan);
+        }
+
+        .bar-fill.alt {
+            background: linear-gradient(90deg, #11998e, #38ef7d);
+            box-shadow: 0 0 15px #38ef7d;
+        }
+
+        .winner-tag { color: var(--neon-green); font-size: 0.8rem; font-weight: bold; margin-left: 10px; display: none; }
+        .footer-total { font-size: 0.7rem; color: #4a5568; margin-top: 20px; font-weight: 600; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="brand">Apracom System</span>
+    <h1 class="logo-text">APRACOM</h1>
+    
+    <div class="welcome-msg">
+        Hola, has sido seleccionado para elegir nuestro próximo <b>PBX de Apracom</b>. Escucha nuestras opciones y vota por tu favorita para convertirla en nuestra voz oficial.
+    </div>
+
+    <div class="audio-card">
+        <div class="card-header">
+            <span class="option-label">Opción A</span>
+            <button class="btn-vote" id="btn1" onclick="votar(1)">Votar</button>
+        </div>
+        <audio controls src="audio1.mp3"></audio>
+    </div>
+
+    <div class="audio-card">
+        <div class="card-header">
+            <span class="option-label">Opción B</span>
+            <button class="btn-vote" id="btn2" onclick="votar(2)">Votar</button>
+        </div>
+        <audio controls src="audio2.mp3"></audio>
+    </div>
+
+    <div id="results" class="results-section">
+        <h3 style="font-size: 1rem; color: #cbd5e0; margin-bottom: 1.5rem;">Resultados en Tiempo Real</h3>
+        
+        <div class="bar-container">
+            <div class="bar-info">
+                <span>Opción A <span id="w1" class="winner-tag">● GANANDO</span></span>
+                <span id="txt1">0%</span>
+            </div>
+            <div class="bar-bg"><div id="bar1" class="bar-fill"></div></div>
+        </div>
+
+        <div class="bar-container">
+            <div class="bar-info">
+                <span>Opción B <span id="w2" class="winner-tag">● GANANDO</span></span>
+                <span id="txt2">0%</span>
+            </div>
+            <div class="bar-bg"><div id="bar2" class="bar-fill alt"></div></div>
+        </div>
+        
+        <p class="footer-total">Votos Totales: <span id="total">0</span></p>
+    </div>
+</div>
+
+<script>
+    let currentVotos = { v1: 0, v2: 0 };
+
+    async function init() {
+        try {
+            const r = await fetch('votos.json?nocache=' + Date.now());
+            currentVotos = await r.json();
+        } catch (e) { console.log("Init..."); }
+    }
+
+    async function votar(op) {
+        document.getElementById('btn1').disabled = true;
+        document.getElementById('btn2').disabled = true;
+
+        const data = (op === 1) ? {v1: 1, v2: 0} : {v1: 0, v2: 1};
+
+        try {
+            const res = await fetch('save.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            currentVotos = await res.json();
+            renderResults();
+        } catch (err) {
+            alert("Error");
+            document.getElementById('btn1').disabled = false;
+            document.getElementById('btn2').disabled = false;
+        }
+    }
+
+    function renderResults() {
+        const total = currentVotos.v1 + currentVotos.v2;
+        const p1 = total > 0 ? Math.round((currentVotos.v1 / total) * 100) : 0;
+        const p2 = total > 0 ? Math.round((currentVotos.v2 / total) * 100) : 0;
+
+        document.getElementById('results').style.display = 'block';
+        
+        setTimeout(() => {
+            document.getElementById('bar1').style.width = p1 + '%';
+            document.getElementById('bar2').style.width = p2 + '%';
+            document.getElementById('txt1').innerText = p1 + '%';
+            document.getElementById('txt2').innerText = p2 + '%';
+            document.getElementById('total').innerText = total;
+
+            document.getElementById('w1').style.display = (p1 > p2) ? 'inline' : 'none';
+            document.getElementById('w2').style.display = (p2 > p1) ? 'inline' : 'none';
+        }, 50);
+    }
+
+    init();
+</script>
+
+</body>
+</html>

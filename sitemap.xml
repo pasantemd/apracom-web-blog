@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home y Soluciones (Sección integrada) -->
+  <url>
+    <loc>https://apracom-ec.com/</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Solución: Inocuidad Alimentaria -->
+  <url>
+    <loc>https://apracom-ec.com/soluciones/inocuidad</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Solución: Línea de Ingredientes -->
+  <url>
+    <loc>https://apracom-ec.com/soluciones/ingredientes</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Solución: Línea de Sanitización -->
+  <url>
+    <loc>https://apracom-ec.com/soluciones/sanitizacion</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Catálogos (Muy importante para conversión) -->
+  <url>
+    <loc>https://apracom-ec.com/catalogos</loc>
+    <lastmod>2024-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Nosotros -->
+  <url>
+    <loc>https://apracom-ec.com/nosotros</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contacto -->
+  <url>
+    <loc>https://apracom-ec.com/contacto</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal: Política de Privacidad -->
+  <url>
+    <loc>https://apracom-ec.com/politica</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

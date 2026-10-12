@@ -1,0 +1,334 @@
+/**
+ * ============================================================================
+ * APRACOM WEB — SISTEMA DE ANIMACIONES CONTEXTUALES
+ * Tokens de movimiento, microinteracciones industriales, scroll reveals
+ * y compatibilidad total con accesibilidad (prefers-reduced-motion).
+ * ============================================================================
+ */
+
+:root {
+  /* Duraciones */
+  --motion-micro: 180ms;       /* Microinteracciones: hover botones, iconos */
+  --motion-fast: 280ms;        /* Tooltips, switches, focos */
+  --motion-base: 420ms;        /* Tarjetas, desplegables, acordeones */
+  --motion-entrance: 650ms;    /* Aparición de títulos, textos y bloques */
+  --motion-section: 1000ms;    /* Entradas hero y transiciones de sección */
+
+  /* Curvas de Aceleración (Easings) */
+  --ease-apracom: cubic-bezier(0.22, 1, 0.36, 1);     /* Curva principal suave y elegante */
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);      /* Transiciones simétricas */
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);       /* Parallax y movimiento continuo */
+
+  /* Distancias de Desplazamiento */
+  --dist-xs: 4px;
+  --dist-sm: 8px;
+  --dist-md: 16px;
+  --dist-lg: 24px;
+}
+
+/* ==========================================================================
+   1. HEADER Y NAVEGACIÓN REFINADOS
+   ========================================================================== */
+#main-header {
+  transition: background var(--motion-base) var(--ease-apracom),
+              height var(--motion-base) var(--ease-apracom),
+              box-shadow var(--motion-base) var(--ease-apracom),
+              backdrop-filter var(--motion-base) var(--ease-apracom) !important;
+  will-change: height, background, box-shadow;
+}
+
+/* Reducción sutil de altura de 90px a 74px al hacer scroll para despejar lectura */
+#main-header.scrolled,
+.home-page #main-header.scrolled,
+.has-hero #main-header.scrolled {
+  height: 74px !important;
+  box-shadow: 0 4px 20px rgba(0, 30, 50, 0.08) !important;
+}
+
+/* Indicador de subrayado animado sutil en enlaces del menú */
+.main-nav .nav-link {
+  position: relative;
+  transition: color var(--motion-micro) var(--ease-apracom);
+}
+
+.main-nav .nav-link:not(.nav-cta):not(.nav-link-soluciones)::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background-color: #009aa6;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-fast) var(--ease-apracom);
+}
+
+.main-nav .nav-link:not(.nav-cta):hover::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   2. MICROINTERACCIONES DE BOTONES (CTAs)
+   ========================================================================== */
+.btn-primary,
+.btn-hero,
+.btn-gold,
+.brand-button,
+.btn-submit,
+.btn-catalogs,
+.btn-hero-sani,
+.btn-hero-contact,
+.btn-catalog-download {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--motion-micro) var(--ease-apracom),
+              box-shadow var(--motion-micro) var(--ease-apracom),
+              background-color var(--motion-micro) var(--ease-apracom) !important;
+  will-change: transform;
+}
+
+.btn-primary:hover,
+.btn-hero:hover,
+.btn-gold:hover,
+.brand-button:hover,
+.btn-submit:hover,
+.btn-catalogs:hover,
+.btn-hero-sani:hover,
+.btn-hero-contact:hover,
+.btn-catalog-download:hover {
+  transform: translateY(-1.5px) scale(1.01) !important;
+}
+
+.btn-primary:active,
+.btn-hero:active,
+.btn-gold:active,
+.brand-button:active,
+.btn-submit:active,
+.btn-catalogs:active,
+.btn-hero-sani:active,
+.btn-hero-contact:active,
+.btn-catalog-download:active {
+  transform: scale(0.98) !important;
+}
+
+.btn-primary:focus-visible,
+.btn-hero:focus-visible,
+.btn-gold:focus-visible,
+.brand-button:focus-visible,
+.btn-submit:focus-visible,
+.btn-catalogs:focus-visible {
+  outline: 2px solid #009aa6 !important;
+  outline-offset: 3px !important;
+}
+
+/* ==========================================================================
+   3. MICROINTERACCIONES DE TARJETAS
+   ========================================================================== */
+.benefit-card,
+.card-sani,
+.product-item-card,
+.btn-analysis,
+.btn-cat,
+.gallery-panel {
+  transition: transform var(--motion-base) var(--ease-apracom),
+              box-shadow var(--motion-base) var(--ease-apracom),
+              border-color var(--motion-fast) var(--ease-apracom) !important;
+  will-change: transform, box-shadow;
+}
+
+.benefit-card:hover,
+.product-item-card:hover,
+.card-sani:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 30px rgba(0, 34, 68, 0.12) !important;
+}
+
+.btn-analysis:hover,
+.btn-cat:hover {
+  transform: translateY(-2.5px) !important;
+  box-shadow: 0 8px 24px rgba(0, 40, 80, 0.14) !important;
+}
+
+/* Hover de iconos dentro de botones de categoría */
+.btn-analysis img,
+.btn-cat img {
+  transition: transform var(--motion-fast) var(--ease-apracom);
+}
+
+.btn-analysis:hover img,
+.btn-cat:hover img {
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   4. IMÁGENES DE PRODUCTO Y CATÁLOGO
+   ========================================================================== */
+.home-catalog-image img,
+.catalog-mockup img,
+.catalog-mockup-sani img,
+.solutions-image img,
+.ovo-img-main img {
+  transition: transform var(--motion-base) var(--ease-apracom),
+              filter var(--motion-base) var(--ease-apracom);
+  will-change: transform;
+}
+
+.home-catalog-image:hover img,
+.catalog-mockup:hover img,
+.catalog-mockup-sani:hover img,
+.solutions-image:hover img,
+.ovo-img-main:hover img {
+  transform: scale(1.02) !important;
+}
+
+/* ==========================================================================
+   5. BADGES Y CÁPSULAS DE PROCESO
+   ========================================================================== */
+.prod-badge-capsule,
+.capsule-outline {
+  display: inline-flex;
+  align-items: center;
+  transition: transform var(--motion-micro) var(--ease-apracom),
+              box-shadow var(--motion-micro) var(--ease-apracom),
+              border-color var(--motion-micro) var(--ease-apracom),
+              background var(--motion-micro) var(--ease-apracom);
+}
+
+.prod-badge-capsule:hover,
+.capsule-outline:hover {
+  transform: translateY(-1px);
+  border-color: #b59a4d;
+  box-shadow: 0 4px 12px rgba(181, 154, 77, 0.15);
+}
+
+/* ==========================================================================
+   6. SCROLL REVEALS LIGEROS (IntersectionObserver)
+   ========================================================================== */
+.reveal-init {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(var(--dist-md));
+  transition: opacity var(--motion-entrance) var(--ease-apracom),
+              transform var(--motion-entrance) var(--ease-apracom);
+}
+
+.reveal-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity var(--motion-entrance) var(--ease-apracom);
+}
+
+.reveal-fade.is-revealed {
+  opacity: 1;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity var(--motion-entrance) var(--ease-apracom),
+              transform var(--motion-entrance) var(--ease-apracom);
+}
+
+.reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-entrance) var(--ease-apracom);
+}
+
+.reveal-line.is-revealed {
+  transform: scaleX(1);
+}
+
+/* Retardo escalonado (stagger) para grupos de tarjetas / pasos */
+.reveal-group > *:nth-child(1) { transition-delay: 0.04s; }
+.reveal-group > *:nth-child(2) { transition-delay: 0.10s; }
+.reveal-group > *:nth-child(3) { transition-delay: 0.16s; }
+.reveal-group > *:nth-child(4) { transition-delay: 0.22s; }
+.reveal-group > *:nth-child(5) { transition-delay: 0.28s; }
+.reveal-group > *:nth-child(6) { transition-delay: 0.34s; }
+
+/* ==========================================================================
+   7. FORMULARIOS REFINADOS
+   ========================================================================== */
+.contact-form input,
+.contact-form textarea {
+  transition: border-color var(--motion-fast) var(--ease-apracom),
+              box-shadow var(--motion-fast) var(--ease-apracom);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-bottom-color: #0072bc !important;
+  box-shadow: 0 4px 10px rgba(0, 114, 188, 0.08);
+}
+
+/* ==========================================================================
+   8. ADAPTACIÓN RESPONSIVE (Móviles < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Desactivar desplazamientos de hover táctil */
+  .benefit-card:hover,
+  .card-sani:hover,
+  .btn-analysis:hover,
+  .btn-cat:hover,
+  .product-item-card:hover {
+    transform: none !important;
+  }
+
+  /* Reducir distancias de entrada en móvil */
+  .reveal-up {
+    transform: translateY(var(--dist-sm));
+  }
+}
+
+/* ==========================================================================
+   9. PREFERS-REDUCED-MOTION (ACCESIBILIDAD OBLIGATORIA)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-init,
+  .reveal-up,
+  .reveal-fade,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .reveal-line {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .apracom-machine-shine,
+  .apracom-egg-particles,
+  .hotspot-ring {
+    animation: none !important;
+    display: none !important;
+  }
+}
